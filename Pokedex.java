@@ -4,74 +4,245 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * Clase Pokedex. Contiene la Lista de Pokemon, los metodos necesarios (Constructor, Getters/Setters) para poder ser utilizado por el Controlador.
+ * Contiene los metodos necesarios para desarrollar las funciones de CRUD exigidas desde la Clase Controlador.
+ * 
+ * @author Oscar
+ * @version 1
+ */
 public class Pokedex {
 
 	private String entrenador;
 	private ArrayList<Pokemon> miPokedex = new ArrayList<Pokemon>();
-
+	/**
+	 * Metodo Constructor Entrenador
+	 * 
+	 * @author Oscar
+	 * @param entrenador
+	 */
 	public Pokedex(String entrenador) {
 		super();
 		this.entrenador = entrenador;
 	}
-
+	/**
+	 * Metodo Getter Entrenador
+	 * 
+	 * @author Oscar
+	 */
 	public String getEntrenador() {
 		return entrenador;
 	}
-
+	/**
+	 * Metodo Setter Pokedex
+	 * 
+	 * @author Oscar
+	 * @param entrenador
+	 */
 	public void setEntrenador(String entrenador) {
 		this.entrenador = entrenador;
 	}
-
+	/**
+	 * Metodo Getter miPokedex
+	 * 
+	 * @author Oscar
+	 */
 	public ArrayList<Pokemon> getMiPokedex() {
 		return miPokedex;
 	}
-
+	/**
+	 * Metodo Setter miPokedex
+	 * 
+	 * @author Oscar
+	 * @param miPokedex
+	 */
 	public void setMiPokedex(ArrayList<Pokemon> miPokedex) {
 		this.miPokedex = miPokedex;
 	}
-
+	/**
+	 * Metodo toString Pokedex
+	 * 
+	 * @author Oscar
+	 */
 	@Override
 	public String toString() {
 		return "Pokedex [entrenador=" + entrenador + ", miPokedex=" + miPokedex + "]";
 	}
 
+	/**
+	 * El metodo addEntrenador guarda el nombre de entrenador elegido por el
+	 * usuario.
+	 * 
+	 * @author Oscar
+	 * @param nuevoEnt Es el parametro con el que fijamos el nombre del entrenador.
+	 */
+	public void addEntrenador(String nuevoEnt) {
+		setEntrenador(nuevoEnt);
+	}
+
+	/**
+	 * El metodo addPokemon guarda los atributos introducidos por el usuario de un
+	 * nuevo Objeto de la Clase Pokemon en la Lista de la Clase Pokedex.
+	 * Mensaje por consola: confirma que se ha guardado el Pokemon.
+	 * 
+	 * @author Oscar
+	 * @param nuevo Es el parametro con el que introducimos los atributos del Pokemon.
+	 */
 	public void addPokemon(Pokemon nuevo) {
 		String nombre = nuevo.getNombre();
 		String tipo = nuevo.getTipo();
 		String region = nuevo.getRegion();
 		nuevo = new Pokemon(nombre, tipo, region);
 		miPokedex.add(nuevo);
+		System.out.println(nuevo.getNombre() + " Ha sido añadido a tu Pokèdex");
+		System.out.println("-----------------------------------------------");
 	}
 
-	public void buscar(Pokemon consulta) {
+	/**
+	 * El metodo buscarNombre compara el atributo nombre de un Objeto de la clase
+	 * Pokemon introducido por el usuario con los existentes en la Lista. 
+	 * Si encuentra coincidencia muestra mensaje por consola con la informacion del
+	 * Pokemon.
+	 * Si no encuentra coincidencia muestra mensaje por consola diciendo
+	 * que el Pokemon no aparece en la Lista.
+	 * Mensajes por consola: muestra mensaje del Pokemon encontrado y sus atributos.
+	 * Mensajes por consola: muestra mensaje de no haber encontrado el Pokemon buscado. 
+	 * Mensajes por consola: muestra mensaje de Error si la Lista estaba vacia.
+	 * 
+	 * @author Oscar
+	 * @param consultaNombre Es el parametro con el que introducimos el Objeto de la
+	 *                       clase Pokemon que queremos buscar en la Lista.
+	 */
+	public void buscarNombre(Pokemon consultaNombre) {
 
-		String nombre = consulta.getNombre();
+		String nombre = consultaNombre.getNombre();
 		int longitud = miPokedex.size();
 		boolean encontrado = false;
 		int contador = 0;
 
-		do {
-			if (miPokedex.get(contador).getNombre().equals(nombre)) {
-				System.out.println("El Pokemon " + nombre + " está en tu Pokedex. Es un Pokemon de tipo "
-						+ miPokedex.get(contador).getTipo() + " y pertenece a la región de "
-						+ miPokedex.get(contador).getRegion());
-				encontrado = true;
-			}
-			contador++;
-			if (contador == longitud && !encontrado) {
-				System.out.println(nombre + " no está en tu Pokedex");
-			}
-		} while (contador < longitud && !encontrado);
-		System.out.println("-----------------------------------------------");
-		System.out.println("Tu Pokedex actual contiene los siguientes Pokemon :");
-		for (int i = 0; i < longitud; i++) {
-			System.out.println("Pokemon " + (i + 1) + ": " + miPokedex.get(i).getNombre() + ", Tipo: "
-					+ miPokedex.get(i).getTipo() + ", Región: " + miPokedex.get(i).getRegion());
+		try {
+			do {
+				if (miPokedex.get(contador).getNombre().equals(nombre)) {
+					System.out.println("El Pokèmon " + nombre + " está en tu Pokèdex. Es un Pokèmon de tipo "
+							+ miPokedex.get(contador).getTipo() + " y pertenece a la región de "
+							+ miPokedex.get(contador).getRegion());
+					encontrado = true;
+				}
+				contador++;
+				if (contador == longitud && !encontrado) {
+					System.out.println(nombre + " no está en tu Pokèdex");
+				}
+			} while (contador < longitud && !encontrado);
+		} catch (java.lang.IndexOutOfBoundsException e) {
+			System.out.println("Tu Pokèdex está vacía. Añade primero algún Pokèmon");
 		}
 		System.out.println("-----------------------------------------------");
 
 	}
+	/**
+	 * El metodo buscarTipo compara el atributo tipo de un Objeto de la clase
+	 * Pokemon introducido por el usuario con los existentes en la Lista. 
+	 * Si encuentra coincidencia muestra mensaje por consola con la informacion de
+	 * todos los Pokemon del tipo buscado.
+	 * Si no encuentra ningun Pokemon del tipo buscado muestra mensaje por consola 
+	 * diciendo que no hay Pokemon de ese tipo en la Lista.
+	 * Mensajes por consola: muestra mensaje de los Pokemon encontrados y sus atributos.
+	 * Mensajes por consola: muestra mensaje de no haber encontrado el Pokemon del tipo buscado. 
+	 * 
+	 * @author Oscar
+	 * @param consultaTipo Es el parametro con el que introducimos el Objeto de la
+	 *                     clase Pokemon que queremos buscar en la Lista.
+	 */
+	public void buscarTipo(Pokemon consultaTipo) {
+		String tipo = consultaTipo.getTipo();
+		int longitud = miPokedex.size();
+		boolean encontrado = false;
 
+		System.out.println("Tienes los siguientes Pokèmon del tipo " + tipo + " en tu Pokèdex:");
+		for (int i = 0; i < longitud; i++) {
+			if (miPokedex.get(i).getTipo().equals(tipo)) {
+				System.out.println("Pokèmon: " + miPokedex.get(i).getNombre() + ", Tipo: " + miPokedex.get(i).getTipo()
+						+ ", Región: " + miPokedex.get(i).getRegion());
+				encontrado = true;
+			}
+		}
+		if (encontrado == false) {
+			System.out.println("No hay Pokèmon del tipo " + tipo + " en tu Pokèdex");
+		}
+		System.out.println("-----------------------------------------------");
+	}
+	/**
+	 * El metodo buscarRegion compara el atributo region de un Objeto de la clase
+	 * Pokemon introducido por el usuario con los existentes en la Lista. 
+	 * Si encuentra coincidencia muestra mensaje por consola con la informacion de
+	 * todos los Pokemon de la region buscada.
+	 * Si no encuentra ningun Pokemon de la region buscada, muestra mensaje por consola 
+	 * diciendo que no hay Pokemon de ese tipo en la Lista.
+	 * Mensajes por consola: muestra mensaje de los Pokemon encontrados y sus atributos.
+	 * Mensajes por consola: muestra mensaje de no haber encontrado el Pokemon de la region buscada. 
+	 * 
+	 * @author Oscar
+	 * @param consultaRegion Es el parametro con el que introducimos el Objeto de la
+	 *                       clase Pokemon que queremos buscar en la Lista.
+	 */
+	public void buscarRegion(Pokemon consultaRegion) {
+		String region = consultaRegion.getRegion();
+		int longitud = miPokedex.size();
+		boolean encontrado = false;
+
+		System.out.println("Tienes los siguientes Pokèmon de la región " + region + " en tu Pokèdex:");
+		for (int i = 0; i < longitud; i++) {
+			if (miPokedex.get(i).getRegion().equals(region)) {
+				System.out.println("Pokèmon: " + miPokedex.get(i).getNombre() + ", Tipo: " + miPokedex.get(i).getTipo()
+						+ ", Región: " + miPokedex.get(i).getRegion());
+				encontrado = true;
+			}
+		}
+		if (encontrado == false) {
+			System.out.println("No hay Pokèmon del tipo " + region + " en tu Pokèdex");
+		}
+		System.out.println("-----------------------------------------------");
+	}
+	/**
+	 * El metodo pokedexCompleta recorre la Lista miPokedex al completo y saca por consola
+	 * la información de los atributos de los Pokemon guardados. 
+	 * Si la Pokedex esta vacia saca mensaje por consola informando.
+	 * Mensajes por consola: muestra la Lista de Pokemon actualizada.
+	 * Mensajes por consola: muestra mensaje de Pokedex vacia si la Lista miPokedex esta vacia. 
+	 * 
+	 * @author Oscar
+	 */
+	public void pokedexCompleta() {
+
+		int longitud = miPokedex.size();
+
+		System.out.println("La Pokèdex actual de " + getEntrenador() + ", contiene los siguientes Pokèmon:");
+		if (miPokedex.isEmpty()) {
+			System.out.println("Tu Pokèdex está vacía");
+		} else {
+			for (int i = 0; i < longitud; i++) {
+				System.out.println("Pokèmon " + (i + 1) + ": " + miPokedex.get(i).getNombre() + ", Tipo: "
+						+ miPokedex.get(i).getTipo() + ", Región: " + miPokedex.get(i).getRegion());
+			}
+		}
+
+		System.out.println("-----------------------------------------------");
+	}
+
+	/**
+	 * El metodo modificar compara el atributo nombre de un Objeto de la clase
+	 * Pokemon introducido por el usuario con los existentes en la Lista. 
+	 * Si encuentra coincidencia pide por consola al usuario que modifique los
+	 * atributos del Pokemon. 
+	 * Si no encuentra coincidencia muestra mensaje por consola diciendo que el Pokemon no aparece en la Lista. 
+	 * Mensajes por consola: muestra mensaje del Pokemon encontrado y pide al usuario los nuevos atributos. 
+	 * Mensajes por consola: muestra mensaje de no haber encontrado el Pokemon buscado. 
+	 * Mensajes por consola: muestra mensaje de Error si la Lista estaba vacia.
+	 * 
+	 * @author Oscar
+	 * @param modifica Es el parametro con el que introducimos el Objeto de la clase
+	 *                 Pokemon que queremos buscar en la Lista
+	 */
 	public void modificar(Pokemon modifica) {
 
 		String nombre = modifica.getNombre();
@@ -79,23 +250,40 @@ public class Pokedex {
 		boolean encontrado = false;
 		int contador = 0;
 
-		do {
-			if (miPokedex.get(contador).getNombre().equals(nombre)) {
-				System.out.println(
-						"El Pokemon " + nombre + " está en tu Pokedex. Introduce los nuevos datos para modificarlo: ");
-				encontrado = true;
-				modifica = Utilidades.PedirPokemon();
-				miPokedex.remove(contador);
-				miPokedex.add(contador, modifica);
-			}
-			contador++;
-			if (contador == longitud && !encontrado) {
-				System.out.println(nombre + " no está en tu Pokedex");
-			}
-		} while (contador < longitud && !encontrado);
+		try {
+			do {
+				if (miPokedex.get(contador).getNombre().equals(nombre)) {
+					System.out.println("El Pokèmon " + nombre
+							+ " está en tu Pokèdex. Introduce los nuevos datos para modificarlo: ");
+					encontrado = true;
+					modifica = Utilidades.PedirPokemon();
+					miPokedex.remove(contador);
+					miPokedex.add(contador, modifica);
+				}
+				contador++;
+				if (contador == longitud && !encontrado) {
+					System.out.println(nombre + " no está en tu Pokèdex");
+				}
+			} while (contador < longitud && !encontrado);
+
+		} catch (java.lang.IndexOutOfBoundsException e) {
+			System.out.println("Tu Pokèdex está vacía. Añade primero algún Pokèmon");
+		}
 
 	}
 
+	/**
+	 * El metodo liberar pide al usuario el atributo nombre de un Objeto de la clase
+	 * Pokemon que quiere eliminar de la Lista y lo elimina. 
+	 * Si encuentra coincidencia muestra mensaje por consola de haber liberado al Pokemon. 
+	 * Si no encuentra coincidencia muestra mensaje por consola diciendo que el Pokemon no
+	 * aparece en la Lista. 
+	 * Mensajes por consola: muestra mensaje de Error si la Lista estaba vacia.
+	 * 
+	 * @author Oscar
+	 * @param libera Es el parametro con el que introducimos el Objeto de la clase
+	 *               Pokemon que queremos buscar en la Lista
+	 */
 	public void liberar(Pokemon libera) {
 
 		String nombre = libera.getNombre();
@@ -103,17 +291,22 @@ public class Pokedex {
 		boolean encontrado = false;
 		int contador = 0;
 
-		do {
-			if (miPokedex.get(contador).getNombre().equals(nombre)) {
-				System.out.println("El Pokemon " + nombre + " Ha sido liberado. ¡Buena suerte " + nombre + "!");
-				encontrado = true;
-				miPokedex.remove(contador);
-			}
-			contador++;
-			if (contador == longitud && !encontrado) {
-				System.out.println("El Pokemon " + nombre + " no está en tu Pokedex");
-			}
-		} while (contador < longitud && !encontrado);
+		try {
+			do {
+				if (miPokedex.get(contador).getNombre().equals(nombre)) {
+					System.out.println("El Pokèmon " + nombre + " Ha sido liberado. ¡Buena suerte " + nombre + "!");
+					encontrado = true;
+					miPokedex.remove(contador);
+				}
+				contador++;
+				if (contador == longitud && !encontrado) {
+					System.out.println("El Pokèmon " + nombre + " no está en tu Pokedex");
+				}
+			} while (contador < longitud && !encontrado);
+
+		} catch (java.lang.IndexOutOfBoundsException e) {
+			System.out.println("Tu Pokèdex está vacía. Añade primero algún Pokèmon");
+		}
 
 	}
 
