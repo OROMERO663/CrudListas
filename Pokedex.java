@@ -104,24 +104,28 @@ public class Pokedex {
 		boolean encontrado = false;
 		int contador = 0;
 		
-		if (miPokedex.isEmpty()) {
-			miPokedex.add(nuevo);
-			System.out.println(nuevo.getNombre() + " Ha sido añadido a tu Pokèdex");
-			System.out.println("-----------------------------------------------");
-		} else {
-			do {
-				if (miPokedex.get(contador).getNombre().equals(nombre)) {
-					System.out.println("El Pokèmon " + nombre + " está en tu Pokèdex. Prueba a añadir otro Pokèmon");
-					encontrado = true;
-				}
-				contador++;
-				if (contador == longitud && !encontrado) {
-					miPokedex.add(nuevo);
-					System.out.println(nuevo.getNombre() + " Ha sido añadido a tu Pokèdex");
-					System.out.println("-----------------------------------------------");
-				}
-			} while (contador < longitud && !encontrado);
+		try {
+			if (miPokedex.isEmpty()) {
+				miPokedex.add(nuevo);
+				System.out.println(nuevo.getNombre() + " Ha sido añadido a tu Pokèdex");
+				System.out.println("-----------------------------------------------");
+			} else {
+				do {
+					if (miPokedex.get(contador).getNombre().equals(nombre)) {
+						System.out.println("El Pokèmon " + nombre + " está en tu Pokèdex. Prueba a añadir otro Pokèmon");
+						encontrado = true;
+					}
+					contador++;
+					if (contador == longitud && !encontrado) {
+						miPokedex.add(nuevo);
+						System.out.println(nuevo.getNombre() + " Ha sido añadido a tu Pokèdex");
+						System.out.println("-----------------------------------------------");
+					}
+				} while (contador < longitud && !encontrado);
 
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 
 	}
@@ -187,15 +191,24 @@ public class Pokedex {
 		boolean encontrado = false;
 
 		System.out.println("Tienes los siguientes Pokèmon del tipo " + tipo + " en tu Pokèdex:");
-		for (int i = 0; i < longitud; i++) {
-			if (miPokedex.get(i).getTipo().equals(tipo)) {
-				System.out.println("Pokèmon: " + miPokedex.get(i).getNombre() + ", Tipo: " + miPokedex.get(i).getTipo()
-						+ ", Región: " + miPokedex.get(i).getRegion());
-				encontrado = true;
+		
+		try {
+			for (int i = 0; i < longitud; i++) {
+				if (miPokedex.get(i).getTipo().equals(tipo)) {
+					System.out.println("Pokèmon: " + miPokedex.get(i).getNombre() + ", Tipo: " + miPokedex.get(i).getTipo()
+							+ ", Región: " + miPokedex.get(i).getRegion());
+					encontrado = true;
+				}
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		if (encontrado == false) {
-			System.out.println("No hay Pokèmon del tipo " + tipo + " en tu Pokèdex");
+		try {
+			if (encontrado == false) {
+				System.out.println("No hay Pokèmon del tipo " + tipo + " en tu Pokèdex");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		System.out.println("-----------------------------------------------");
 	}
@@ -219,15 +232,23 @@ public class Pokedex {
 		boolean encontrado = false;
 
 		System.out.println("Tienes los siguientes Pokèmon de la región " + region + " en tu Pokèdex:");
-		for (int i = 0; i < longitud; i++) {
-			if (miPokedex.get(i).getRegion().equals(region)) {
-				System.out.println("Pokèmon: " + miPokedex.get(i).getNombre() + ", Tipo: " + miPokedex.get(i).getTipo()
-						+ ", Región: " + miPokedex.get(i).getRegion());
-				encontrado = true;
+		try {
+			for (int i = 0; i < longitud; i++) {
+				if (miPokedex.get(i).getRegion().equals(region)) {
+					System.out.println("Pokèmon: " + miPokedex.get(i).getNombre() + ", Tipo: " + miPokedex.get(i).getTipo()
+							+ ", Región: " + miPokedex.get(i).getRegion());
+					encontrado = true;
+				}
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		if (encontrado == false) {
-			System.out.println("No hay Pokèmon del tipo " + region + " en tu Pokèdex");
+		try {
+			if (encontrado == false) {
+				System.out.println("No hay Pokèmon del tipo " + region + " en tu Pokèdex");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		System.out.println("-----------------------------------------------");
 	}
@@ -245,13 +266,17 @@ public class Pokedex {
 		int longitud = miPokedex.size();
 
 		System.out.println("La Pokèdex actual de " + getEntrenador() + ", contiene los siguientes Pokèmon:");
-		if (miPokedex.isEmpty()) {
-			System.out.println("Tu Pokèdex está vacía");
-		} else {
-			for (int i = 0; i < longitud; i++) {
-				System.out.println("Pokèmon " + (i + 1) + ": " + miPokedex.get(i).getNombre() + ", Tipo: "
-						+ miPokedex.get(i).getTipo() + ", Región: " + miPokedex.get(i).getRegion());
+		try {
+			if (miPokedex.isEmpty()) {
+				System.out.println("Tu Pokèdex está vacía");
+			} else {
+				for (int i = 0; i < longitud; i++) {
+					System.out.println("Pokèmon " + (i + 1) + ": " + miPokedex.get(i).getNombre() + ", Tipo: "
+							+ miPokedex.get(i).getTipo() + ", Región: " + miPokedex.get(i).getRegion());
+				}
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 
 		System.out.println("-----------------------------------------------");

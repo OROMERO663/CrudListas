@@ -65,8 +65,12 @@ public class Utilidades {
 	public static String PedirEntrenador() {
 		System.out.println("¿Cuál es tu nombre?");
 		String nombreEntrenador = "";
-		Scanner lector = new Scanner(System.in);
-		nombreEntrenador = lector.nextLine();
+		try {
+			Scanner lector = new Scanner(System.in);
+			nombreEntrenador = lector.nextLine();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return nombreEntrenador;
 	}
 
@@ -86,13 +90,17 @@ public class Utilidades {
 		String tipo = " ";
 		String region = " ";
 
-		System.out.println("Introduce el nombre del Pokèmon:");
-		nombre = lector.nextLine();
-		System.out.println("Introduce el tipo de " + nombre + ":");
-		tipo = lector.nextLine();
-		System.out.println("Introduce la región a la que pertenece " + nombre + ":");
-		region = lector.nextLine();
-		lector.nextLine();
+		try {
+			System.out.println("Introduce el nombre del Pokèmon:");
+			nombre = lector.nextLine();
+			System.out.println("Introduce el tipo de " + nombre + ":");
+			tipo = lector.nextLine();
+			System.out.println("Introduce la región a la que pertenece " + nombre + ":");
+			region = lector.nextLine();
+			lector.nextLine();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 		return new Pokemon(nombre, tipo, region);
 	}
@@ -112,8 +120,12 @@ public class Utilidades {
 		String tipo = " ";
 		String region = " ";
 
-		System.out.println("Introduce el nombre del Pokèmon:");
-		nombre = lector.nextLine();
+		try {
+			System.out.println("Introduce el nombre del Pokèmon:");
+			nombre = lector.nextLine();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 		return new Pokemon(nombre, tipo, region);
 
@@ -133,8 +145,12 @@ public class Utilidades {
 		String tipo = " ";
 		String region = " ";
 
-		System.out.println("Introduce el tipo del Pokèmon:");
-		tipo = lector.nextLine();
+		try {
+			System.out.println("Introduce el tipo del Pokèmon:");
+			tipo = lector.nextLine();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 		return new Pokemon(nombre, tipo, region);
 
@@ -154,8 +170,12 @@ public class Utilidades {
 		String tipo = " ";
 		String region = " ";
 
-		System.out.println("Introduce la región del Pokèmon:");
-		region = lector.nextLine();
+		try {
+			System.out.println("Introduce la región del Pokèmon:");
+			region = lector.nextLine();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 		return new Pokemon(nombre, tipo, region);
 
