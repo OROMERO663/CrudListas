@@ -107,7 +107,7 @@ public class Pokedex {
 		try {
 			if (miPokedex.isEmpty()) {
 				miPokedex.add(nuevo);
-				System.out.println(nuevo.getNombre() + " Ha sido añadido a tu Pokèdex");
+				System.out.println(nuevo.getNombre() + " ha sido añadido a tu Pokèdex");
 				System.out.println("-----------------------------------------------");
 			} else {
 				do {
@@ -304,23 +304,29 @@ public class Pokedex {
 		int contador = 0;
 
 		try {
-			do {
-				if (miPokedex.get(contador).getNombre().equals(nombre)) {
-					System.out.println("El Pokèmon " + nombre
-							+ " está en tu Pokèdex. Introduce los nuevos datos para modificarlo: ");
-					encontrado = true;
-					modifica = Utilidades.PedirPokemon();
-					miPokedex.remove(contador);
-					miPokedex.add(contador, modifica);
-				}
-				contador++;
-				if (contador == longitud && !encontrado) {
-					System.out.println(nombre + " no está en tu Pokèdex");
-				}
-			} while (contador < longitud && !encontrado);
+			if (miPokedex.isEmpty()) {
+				System.out.println("Tu Pokèdex está vacía. Añade primero algún Pokèmon");
+			} else {
+				do {
+					if (miPokedex.get(contador).getNombre().equals(nombre)) {
+						System.out.println("El Pokèmon " + nombre
+								+ " está en tu Pokèdex. Introduce los nuevos datos para modificarlo: ");
+						encontrado = true;
+						modifica = Utilidades.PedirPokemon();
+						miPokedex.remove(contador);
+						miPokedex.add(contador, modifica);
+						System.out.println("Tu Pokèmon ha sido modificado.");
+						System.out.println("-----------------------------------------------");
+					}
+					contador++;
+					if (contador == longitud && !encontrado) {
+						System.out.println(nombre + " no está en tu Pokèdex");
+					}
+				} while (contador < longitud && !encontrado);
+			}
 
-		} catch (java.lang.IndexOutOfBoundsException e) {
-			System.out.println("Tu Pokèdex está vacía. Añade primero algún Pokèmon");
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 
 	}
@@ -345,20 +351,26 @@ public class Pokedex {
 		int contador = 0;
 
 		try {
-			do {
-				if (miPokedex.get(contador).getNombre().equals(nombre)) {
-					System.out.println("El Pokèmon " + nombre + " Ha sido liberado. ¡Buena suerte " + nombre + "!");
-					encontrado = true;
-					miPokedex.remove(contador);
-				}
-				contador++;
-				if (contador == longitud && !encontrado) {
-					System.out.println("El Pokèmon " + nombre + " no está en tu Pokedex");
-				}
-			} while (contador < longitud && !encontrado);
+			if (miPokedex.isEmpty()) {
+				System.out.println("Tu Pokèdex está vacía. Añade primero algún Pokèmon");
+			} else {
+				do {
+					if (miPokedex.get(contador).getNombre().equals(nombre)) {
+						System.out.println("El Pokèmon " + nombre + " ha sido liberado. ¡Buena suerte " + nombre + "!");
+						System.out.println("-----------------------------------------------");
+						encontrado = true;
+						miPokedex.remove(contador);
+					}
+					contador++;
+					if (contador == longitud && !encontrado) {
+						System.out.println("El Pokèmon " + nombre + " no está en tu Pokedex");
+					}
+				} while (contador < longitud && !encontrado);
+			}
 
-		} catch (java.lang.IndexOutOfBoundsException e) {
-			System.out.println("Tu Pokèdex está vacía. Añade primero algún Pokèmon");
+
+		}  catch (Exception e) {
+			e.printStackTrace();
 		}
 
 	}
