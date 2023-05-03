@@ -37,7 +37,11 @@ public class Controlador {
 		do {
 			Utilidades.MensajeInicio();
 			nombreEntrenador = Utilidades.PedirEntrenador();
-			Pokedex1.addEntrenador(nombreEntrenador);
+			if (nombreEntrenador.equals("")) {
+				System.out.println("Introduce un nombre de entrenador");
+			} else {
+				Pokedex1.addEntrenador(nombreEntrenador);
+			}
 		} while (nombreEntrenador == "");
 
 		do {
