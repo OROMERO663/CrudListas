@@ -19,7 +19,7 @@ public class Pokedex {
 	 * Metodo Constructor Entrenador
 	 * 
 	 * @author Oscar
-	 * @param entrenador
+	 * @param entrenador Nombre introducido por el usuario
 	 */
 	public Pokedex(String entrenador) {
 		super();
@@ -29,6 +29,7 @@ public class Pokedex {
 	 * Metodo Getter Entrenador
 	 * 
 	 * @author Oscar
+	 * @return entrenador Nombre elegido por el usuario
 	 */
 	public String getEntrenador() {
 		return entrenador;
@@ -37,7 +38,7 @@ public class Pokedex {
 	 * Metodo Setter Pokedex
 	 * 
 	 * @author Oscar
-	 * @param entrenador
+	 * @param entrenador Nombre elegido por el usuario
 	 */
 	public void setEntrenador(String entrenador) {
 		this.entrenador = entrenador;
@@ -46,6 +47,7 @@ public class Pokedex {
 	 * Metodo Getter miPokedex
 	 * 
 	 * @author Oscar
+	 * @return miPokedex Contenido de la Lista miPokedex
 	 */
 	public ArrayList<Pokemon> getMiPokedex() {
 		return miPokedex;
@@ -54,7 +56,7 @@ public class Pokedex {
 	 * Metodo Setter miPokedex
 	 * 
 	 * @author Oscar
-	 * @param miPokedex
+	 * @param miPokedex Contenido de la lsita miPokedex
 	 */
 	public void setMiPokedex(ArrayList<Pokemon> miPokedex) {
 		this.miPokedex = miPokedex;
@@ -63,6 +65,7 @@ public class Pokedex {
 	 * Metodo toString Pokedex
 	 * 
 	 * @author Oscar
+	 * @return String devuelve miPokedex toString
 	 */
 	@Override
 	public String toString() {
@@ -83,7 +86,11 @@ public class Pokedex {
 	/**
 	 * El metodo addPokemon guarda los atributos introducidos por el usuario de un
 	 * nuevo Objeto de la Clase Pokemon en la Lista de la Clase Pokedex.
+	 * Si la Lista esta vacia añade directamente el nuevo Pokemon.
+	 * Si el nombre del Pokemon ya estaba guardado saca mensaje por consola
+	 * diciendo que el Pokemon ya esta en la lista y no lo guarda
 	 * Mensaje por consola: confirma que se ha guardado el Pokemon.
+	 * Mensaje por consola: el Pokemon esta repetido y pide que se introduzca un nuevo Pokemon.
 	 * 
 	 * @author Oscar
 	 * @param nuevo Es el parametro con el que introducimos los atributos del Pokemon.
@@ -93,9 +100,30 @@ public class Pokedex {
 		String tipo = nuevo.getTipo();
 		String region = nuevo.getRegion();
 		nuevo = new Pokemon(nombre, tipo, region);
-		miPokedex.add(nuevo);
-		System.out.println(nuevo.getNombre() + " Ha sido añadido a tu Pokèdex");
-		System.out.println("-----------------------------------------------");
+		int longitud = miPokedex.size();
+		boolean encontrado = false;
+		int contador = 0;
+		
+		if (miPokedex.isEmpty()) {
+			miPokedex.add(nuevo);
+			System.out.println(nuevo.getNombre() + " Ha sido añadido a tu Pokèdex");
+			System.out.println("-----------------------------------------------");
+		} else {
+			do {
+				if (miPokedex.get(contador).getNombre().equals(nombre)) {
+					System.out.println("El Pokèmon " + nombre + " está en tu Pokèdex. Prueba a añadir otro Pokèmon");
+					encontrado = true;
+				}
+				contador++;
+				if (contador == longitud && !encontrado) {
+					miPokedex.add(nuevo);
+					System.out.println(nuevo.getNombre() + " Ha sido añadido a tu Pokèdex");
+					System.out.println("-----------------------------------------------");
+				}
+			} while (contador < longitud && !encontrado);
+
+		}
+
 	}
 
 	/**

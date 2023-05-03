@@ -16,9 +16,9 @@ public class Pokemon {
 	 * Metodo Constructor Pokemon
 	 * 
 	 * @author Oscar
-	 * @param nombre
-	 * @param tipo
-	 * @param region
+	 * @param nombre Atributo nombre del Pokemon
+	 * @param tipo Atributo tipo del Pokemon
+	 * @param region Atributo region del Pokemon
 	 */
 	public Pokemon(String nombre, String tipo, String region) {
 		super();
@@ -30,6 +30,7 @@ public class Pokemon {
 	 * Metodo Getter Nombre
 	 * 
 	 * @author Oscar
+	 * @return nombre Atributo nombre del Pokemon
 	 */
 	public String getNombre() {
 		return nombre;
@@ -38,6 +39,7 @@ public class Pokemon {
 	 * Metodo Setter Nombre
 	 * 
 	 * @author Oscar
+	 * @param nombre Nombre del Pokemon
 	 */
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
@@ -46,6 +48,7 @@ public class Pokemon {
 	 * Metodo Getter Tipo
 	 * 
 	 * @author Oscar
+	 * @return tipo Atributo tipo del Pokemon
 	 */
 	public String getTipo() {
 		return tipo;
@@ -54,6 +57,7 @@ public class Pokemon {
 	 * Metodo Setter Tipo
 	 * 
 	 * @author Oscar
+	 * @param tipo Tipo del Pokemon
 	 */
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
@@ -62,6 +66,7 @@ public class Pokemon {
 	 * Metodo Getter Region
 	 * 
 	 * @author Oscar
+	 * @return region Atributo region del Pokemon
 	 */
 	public String getRegion() {
 		return region;
@@ -70,6 +75,7 @@ public class Pokemon {
 	 * Metodo Setter Region
 	 * 
 	 * @author Oscar
+	 * @param region Region del Pokemon
 	 */
 	public void setRegion(String region) {
 		this.region = region;
@@ -78,6 +84,7 @@ public class Pokemon {
 	 * Metodo toString Pokemon
 	 * 
 	 * @author Oscar
+	 * @return String ToString del Objeto de la clase Pokemon
 	 */
 	@Override
 	public String toString() {

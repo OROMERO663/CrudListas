@@ -60,6 +60,7 @@ public class Utilidades {
 	 * Devuelve un nombre de Entrenador para usarlo en el Programa Principal.
 	 * 
 	 * @author Oscar
+	 * @return nombreEntrenador Devuelve el nombre de entrenador elegido por el usuario.
 	 */
 	public static String PedirEntrenador() {
 		System.out.println("¿Cuál es tu nombre?");
@@ -76,6 +77,7 @@ public class Utilidades {
 	 * Devuelve un Objeto de la clase Pokemon para usarlo en el Programa Principal.
 	 * 
 	 * @author Oscar
+	 * @return Pokemon Devueleve un nuevo Objeto de la clase Pokemon
 	 */
 	public static Pokemon PedirPokemon() {
 
@@ -102,6 +104,7 @@ public class Utilidades {
 	 * Devuelve un Objeto de la clase Pokemon para usarlo en el Programa Principal.
 	 * 
 	 * @author Oscar
+	 * @return Pokemon Devueleve un nuevo Objeto de la clase Pokemon
 	 */
 	public static Pokemon PedirNombre() {
 		Scanner lector = new Scanner(System.in);
@@ -122,6 +125,7 @@ public class Utilidades {
 	 * Devuelve un Objeto de la clase Pokemon para usarlo en el Programa Principal.
 	 * 
 	 * @author Oscar
+	 * @return Pokemon Devueleve un nuevo Objeto de la clase Pokemon
 	 */
 	public static Pokemon PedirTipo() {
 		Scanner lector = new Scanner(System.in);
@@ -142,6 +146,7 @@ public class Utilidades {
 	 * Devuelve un Objeto de la clase Pokemon para usarlo en el Programa Principal.
 	 * 
 	 * @author Oscar
+	 * @return Pokemon Devueleve un nuevo Objeto de la clase Pokemon
 	 */
 	public static Pokemon PedirRegion() {
 		Scanner lector = new Scanner(System.in);
