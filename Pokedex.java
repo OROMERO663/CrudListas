@@ -153,20 +153,25 @@ public class Pokedex {
 		int contador = 0;
 
 		try {
-			do {
-				if (miPokedex.get(contador).getNombre().equals(nombre)) {
-					System.out.println("El Pokèmon " + nombre + " está en tu Pokèdex. Es un Pokèmon de tipo "
-							+ miPokedex.get(contador).getTipo() + " y pertenece a la región de "
-							+ miPokedex.get(contador).getRegion());
-					encontrado = true;
-				}
-				contador++;
-				if (contador == longitud && !encontrado) {
-					System.out.println(nombre + " no está en tu Pokèdex");
-				}
-			} while (contador < longitud && !encontrado);
-		} catch (java.lang.IndexOutOfBoundsException e) {
-			System.out.println("Tu Pokèdex está vacía. Añade primero algún Pokèmon");
+			if (miPokedex.isEmpty()) {
+					System.out.println("Tu Pokèdex está vacía. Añade primero algún Pokèmon");
+			} else {
+				do {
+					if (miPokedex.get(contador).getNombre().equals(nombre)) {
+						System.out.println("El Pokèmon " + nombre + " está en tu Pokèdex. Es un Pokèmon de tipo "
+								+ miPokedex.get(contador).getTipo() + " y pertenece a la región de "
+								+ miPokedex.get(contador).getRegion());
+						encontrado = true;
+					}
+					contador++;
+					if (contador == longitud && !encontrado) {
+						System.out.println(nombre + " no está en tu Pokèdex");
+					}
+				} while (contador < longitud && !encontrado);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		System.out.println("-----------------------------------------------");
 
